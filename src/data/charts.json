@@ -1,0 +1,422 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "source": "messenger",
+      "image": "/ellipse-2911.svg",
+      "assign": "ai",
+      "conversation": [
+        {
+          "speaker": "ChatGPT",
+          "message": "How can I assist you today?",
+          "time": "10:27 PM",
+          "read": true
+        },
+  
+        {
+          "speaker": "User",
+          "message": "Can you check my files?",
+          "attachment": {
+            "files": [
+              {
+                "name": "Shadman PDF",
+                "type": "application/pdf",
+                "size": 33792
+              },
+              {
+                "name": "Demo PDF",
+                "type": "application/pdf",
+                "size": 20000
+              }
+            ]
+          },
+          "time": "10:27 PM",
+          "read": true
+        },
+        {
+          "speaker": "Commenter",
+          "message": "be careful to do any ",
+          "name": "Matt",
+          "time": "10:27 PM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "How can I assist you today?",
+          "time": "10:27 PM",
+          "read": true
+        },
+  
+        {
+          "speaker": "User",
+          "message": "I'm good",
+          "time": "10:27 PM",
+          "read": false
+        },
+        {
+          "speaker": "Commenter",
+          "name": "Matt",
+          "message": "be careful to do any further",
+          "time": "10:27 PM"
+        },
+        {
+          "speaker": "User",
+          "replyTo": "how are you?",
+          "message": "This is the last message i sent  ?",
+          "time": "10:27 PM",
+          "read": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "source": "whatsapp",
+      "image": "/ellipse-2911.svg",
+  
+      "assign": "user",
+      "assignTo": "Issac",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment": {
+            "files": [
+              {
+                "name": "Shadman PDF",
+                "type": "DOCX",
+                "size": 33792
+              }
+            ]
+          },
+          "time": "8:15 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Single file uploaded with message",
+          "attachment": {
+            "files": [
+              {
+                "name": "Shadman PDF",
+                "type": "DOCX",
+                "size": 33792
+              }
+            ]
+          },
+          "time": "8:15 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Good morning! How can I help you?",
+          "time": "8:16 AM",
+          "read": true
+        },
+        
+        {
+          "speaker": "User",
+          "message": "Multiple file's uploaded with message",
+          "attachment": {
+            "files": [
+              {
+                "name": "Mick's Resume",
+                "type": "application/pdf",
+                "size": 33792
+              },
+              {
+                "name": "Jack's Resume",
+                "type": "DOCX",
+                "size": 15500
+              }
+            ]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Good morning! How can I help you?",
+          "time": "8:16 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment": {
+            "files": [
+              {
+                "name": "Mick's Resume",
+                "type": "application/pdf",
+                "size": 33792
+              },
+              {
+                "name": "Jack's Resume",
+                "type": "DOCX",
+                "size": 15500
+              }
+            ]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Let me check on that for you.",
+          "time": "8:18 AM",
+          "read": false
+        },
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment": {
+            "images": ["/image-file-preview.svg"]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment": {
+            "images": ["/image-file-preview.svg", "/image-file-preview.svg"]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Single image with message",
+          "attachment": {
+            "images": ["/image-file-preview.svg"]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Multiple image with message",
+          "attachment": {
+            "images": ["/image-file-preview.svg", "/image-file-preview.svg"]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment": {
+            "images": [
+              "/image-file-preview.svg",
+              "/image-file-preview.svg",
+              "/image-file-preview.svg",
+              "/image-file-preview.svg",
+              "/image-file-preview.svg",
+              "/image-file-preview.svg"
+            ]
+          },
+          "time": "8:17 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "",
+          "attachment" : {
+            "voice" :  true
+          },
+          "time": "8:16 AM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "source": "instagram",
+      "image": "/ellipse-2911.svg",
+  
+      "assign": "ai",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "Hello! How can I assist you today?",
+          "time": "3:45 PM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "I need help setting up my new smartwhatsapp.",
+          "time": "3:46 PM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "David Brown",
+      "source": "whatsapp",
+      "image": "/ellipse-2911.svg",
+      "assign": "user",
+      "assignTo": "Issac",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "Hi, is this technical support?",
+          "time": "11:30 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Yes, this is David. How can I help you?",
+          "time": "11:31 AM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "I'm having trouble connecting to my company's VPN.",
+          "time": "11:32 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Let me assist you with that. Could you",
+          "time": "11:33 AM",
+          "read": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Emily Garcia",
+      "source": "website",
+      "image": "/ellipse-2911.svg",
+      "assignTo": "Issac",
+      "assign": "ai",
+      "conversation": [
+        {
+          "speaker": "ChatGPT",
+          "message": "Welcome to our chat support. How may I assist you today?",
+          "time": "2:00 PM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Hi, I need help with my recent order. It seems to be missing an item.",
+          "time": "2:01 PM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Michael Johnson",
+      "source": "instagram",
+      "image": "/ellipse-2911.svg",
+      "assignTo": "Issac",
+      "assign": "user",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "Hello, I'm having trouble accessing my instagram account.",
+          "time": "4:45 PM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "I'm sorry to hear that. Let me look into it for you. Can you provide me with your account details?",
+          "time": "4:46 PM",
+          "read": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Sophia Wilson",
+      "source": "messenger",
+      "image": "/ellipse-2911.svg",
+  
+      "assign": "ai",
+      "conversation": [
+        {
+          "speaker": "ChatGPT",
+          "message": "Good evening! How can I assist you today?",
+          "time": "6:00 PM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Hi, I'm having trouble logging into my account.",
+          "time": "6:01 PM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Matthew Clark",
+      "source": "whatsapp",
+      "image": "/ellipse-2911.svg",
+      "assignTo": "Issac",
+      "assign": "user",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "Hey, I have a question about my recent purchase.",
+          "time": "9:30 AM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "Sure, what do you need assistance with?",
+          "time": "9:31 AM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Olivia Brown",
+      "source": "whatsapp",
+      "image": "/ellipse-2911.svg",
+  
+      "assign": "ai",
+      "conversation": [
+        {
+          "speaker": "ChatGPT",
+          "message": "Hello! How can I help you today?",
+          "time": "1:00 PM",
+          "read": true
+        },
+        {
+          "speaker": "User",
+          "message": "Hi, I'm experiencing issues with my subscription renewal.",
+          "time": "1:01 PM",
+          "read": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Daniel Martinez",
+      "source": "website",
+      "image": "/ellipse-2911.svg",
+      "assignTo": "Issac",
+  
+      "assign": "user",
+      "conversation": [
+        {
+          "speaker": "User",
+          "message": "Hello, I'm having trouble accessing my account.",
+          "time": "5:30 PM",
+          "read": true
+        },
+        {
+          "speaker": "ChatGPT",
+          "message": "I'll assist you with that. Can you please provide me with your account username?",
+          "time": "5:31 PM",
+          "read": false
+        }
+      ]
+    }
+  ]
+  
