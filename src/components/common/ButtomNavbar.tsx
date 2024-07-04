@@ -1,46 +1,42 @@
-
-import { CiHome, CiGlobe } from "react-icons/ci";
-import { FcContacts, FcServices} from "react-icons/fc";
+import Link from "next/link";
+import { BiSolidCartDownload } from "react-icons/bi";
+import { BsChatDotsFill } from "react-icons/bs";
+import { CiHome, CiGlobe, CiGrid42 } from "react-icons/ci";
+import { FcContacts, FcServices } from "react-icons/fc";
+import { GiSkills } from "react-icons/gi";
 // import img from "../assets/IMG_20230312_193407.jpg"
 // import Image from "next/image";
 
 const ButtomNavbar = () => {
-  
-    return (
-        <div className='bg-slate-400 py-2 fixed bottom-0 z-50 w-full  bg-glassmorphism  backdrop-blur-lg xs:px-7 md:hidden '>
+  return (
+    <div className="bg-slate-100 py-2 fixed bottom-0 z-50 w-full  bg-glassmorphism  backdrop-blur-lg xs:px-7 md:hidden ">
+      <ul className="overflow-x-auto flex gap-2 justify-between items-center">
+        <Link className="flex gap-1 items-center" href={"/"}>
+          <CiHome className="text-xl text-orange-600 " />
+          <p className="max-lg:hidden text-sm font-semibold">Home</p>
+        </Link>
 
-            <ul className=" flex gap-2 justify-between items-center">
-               
-                <li className="pp  rounded-full p-3 hover:bg-slate-500 hover:text-white"><a href="#home" className="text-xl font-semibold"> <CiHome className="text-2xl" /> </a></li>
+        <Link className="flex gap-1 items-center" href={"/dashboard"}>
+          <CiGrid42 className="text-xl text-orange-600 " />
+          <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
+        </Link>
 
-                <li className="pp  rounded-full  hover:bg-slate-500 hover:text-white"><a href="#about" className="text-xl font-semibold">
+        <Link className="flex gap-1 items-center" href={"/chat"}>
+          <BsChatDotsFill className="text-xl text-orange-600 " />
+          <p className="max-lg:hidden text-sm font-semibold">Chat</p>
+        </Link>
+        <Link className="flex gap-1 items-center" href={"/cart"}>
+          <BiSolidCartDownload className="text-xl text-orange-600 " />
+          <p className="max-lg:hidden text-sm font-semibold">Cart</p>
+        </Link>
 
-                {/* <img className=" rounded-full" width={52} src={img} alt="" /> */}
-                {/* <Image className="rounded-full" src={"img"} alt="img" width={52} height={52}/> */}
-ggg
-                    </a></li>
-
-                <li className="pp  rounded-full p-3 hover:bg-slate-500 hover:text-white"><a href="#service" className="text-xl font-semibold"><FcServices className="text-2xl" /> </a></li>
-
-                <li className="pp  rounded-full p-3 hover:bg-slate-500 hover:text-white"><a href="#skill" className="text-xl font-semibold"><CiGlobe className="text-2xl" /> </a></li>
-                <li className="pp  rounded-full p-3 hover:bg-slate-500 hover:text-white"><a href="#contact" className="text-xl font-semibold"><FcContacts className="text-2xl" /></a></li>
-              
-                {/* <li>
-
-
-                    <label className="swap swap-rotate">
-
-                        <input onChange={handletoggle} type="checkbox" />
-
-                        <HiOutlineSun className="swap-on text-4xl text-yellow-500" />
-                        <BsFillMoonStarsFill className="swap-off text-3xl " />
-
-                    </label>
-                </li> */}
-            </ul>
-
-        </div>
-    );
+        <Link className="flex gap-1 items-center" href={"/"}>
+          <GiSkills className="text-xl text-orange-600 " />
+          <p className="max-lg:hidden text-sm font-semibold">About-Us</p>
+        </Link>
+      </ul>
+    </div>
+  );
 };
 
 export default ButtomNavbar;

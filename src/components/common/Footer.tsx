@@ -4,7 +4,7 @@ import { IoLogoInstagram, IoLogoTwitter } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="max-w-7xl mx-auto px-5 py-3 flex justify-evenly bg-slate-200 ">
+    <div className="max-w-7xl mx-auto px-5 py-3 flex justify-evenly gap-3 bg-slate-200 ">
       <div>
         <h2 className="font-semibold">Service</h2>
         <div className="flex flex-col">
@@ -33,7 +33,7 @@ const Footer = () => {
           <a className="link link-hover">
             <FaFacebook className="text-xl " />
           </a>
-          
+
           <a className="link link-hover">
             <IoLogoInstagram className="text-xl " />
           </a>
