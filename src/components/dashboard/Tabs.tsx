@@ -1,15 +1,18 @@
 import Tab from "../common/Tabs";
+import Food from "./category/Food";
 
 
 const MainTab: React.FC = () => {
   const tabs = [
-    { label: 'Food', content: <div>Content for Tab 1</div> },
-    { label: 'Clothes', content: <div>Content for Tab 2</div> },
-    { label: 'Bike', content: <div>Content for Tab 3</div> },
+    { label: 'Food', content: <Food/> },
+    { label: 'Clothes', content:  <Food/>  },
+    { label: 'Bike', content:  <Food/>  },
+    { label: 'Electronics', content:  <Food/>  },
+    { label: 'others', content:  <Food/>  },
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto px-4 ">
       <Tab tabs={tabs} />
     </div>
   );

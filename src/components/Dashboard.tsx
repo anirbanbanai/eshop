@@ -10,25 +10,27 @@ import Link from "next/link";
 import { ImSpinner10 } from "react-icons/im";
 import Intigration from "./dashboard/Intigration";
 import MainTab from "./dashboard/Tabs";
+import SendBox from "./dashboard/SendBox";
 
 const components = [
+  <MainTab/>,
   <Details/>,
- <MainTab/>,
   <Intigration/>,
-  <h2>sandbox</h2>,
+  <SendBox/>,
 ];
 
 const Dashboard = () => {
   const items = [
     {
       _id: 1,
-      name: "Shopping",
+      name: "Category",
+   
       icon: "/details.svg",
       selectedIcon: "/details-selected.svg",
     },
     {
       _id: 2,
-      name: "Category",
+      name: "Shopping",
       icon: "/ai-training.svg",
       selectedIcon: "/ai-training-selected.svg",
     },
@@ -62,7 +64,7 @@ const Dashboard = () => {
 
   return (
   
-    <section className="px-5 max-w-4xl mx-auto grid grid-cols-1 py-10 mt-4 gap-y-0">
+    <section className="px-5 py-5 max-w-4xl mx-auto grid grid-cols-1  gap-y-0">
       <div className="  w-full -mt-4 -ml-[1px] flex flex-row z-0 overflow-x-auto gap-4 items-center justify-between">
         <div className="flex flex-row items-center gap-0 overflow-x-auto whitespace-nowrap">
           {items.map((item) => (
@@ -108,7 +110,7 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className=" my-12 ml-[1px] z-10 scrollbar-hide">
+      <div className=" my-3 ml-[1px] z-10 scrollbar-hide">
         <AnimatePresence>{components[selected - 1]}</AnimatePresence>
       </div>
     </section>

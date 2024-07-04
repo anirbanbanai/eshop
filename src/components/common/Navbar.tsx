@@ -5,6 +5,7 @@ import { FcDataConfiguration } from "react-icons/fc";
 import Link from "next/link";
 import { BsChatDotsFill } from "react-icons/bs";
 import { BiSolidCartDownload } from "react-icons/bi";
+import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
 
 const Navbar = () => {
   const NavItem = (
@@ -38,15 +39,15 @@ const Navbar = () => {
 
   return (
     <div className=" z-30 max-w-7xl  mx-auto flex justify-between px-5 py-3   bg-white  max-md:hidden">
-      <div className="flex gap-2 items-center bg-white">
-        {/* <FcDataConfiguration className="text-3xl" /> */}
+      <div className="flex gap-2 items-center bg-white"> 
+        <FaAmericanSignLanguageInterpreting className="text-5xl text-pink-500 " />
         <a className="btn btn-ghost normal-case text-3xl sm:text-4xl lg:text-5xl  font-bold">
           <span className="text-red-500">E</span>
           <span className="text-purple-500">Shop</span>
         </a>
       </div>
 
-      <div className=" flex gap-5 item-center bg-white">{NavItem}</div>
+      <div className=" flex  gap-14 item-center bg-white">{NavItem}</div>
 
       <div className=" ">
         <Link href="/login">
