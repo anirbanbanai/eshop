@@ -156,7 +156,7 @@ function GeneratedMessages() {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip
+          {/* <Tooltip
             content={({ payload }) => {
               const filteredPayload = payload.filter(
                 (entry) => entry.dataKey !== "MonthlyAudit"
@@ -178,7 +178,7 @@ function GeneratedMessages() {
                 </div>
               );
             }}
-          />
+          /> */}
           <Legend
             formatter={(value, entry) => {
               return value?.replace(/([A-Z])/g, " $1").trim();
@@ -290,7 +290,7 @@ function MessagesPerPlatform() {
         >
           <Pie
             activeIndex={activeIndex}
-            activeShape={activeIndex !== null ? renderActiveShape : null}
+            // activeShape={activeIndex !== null ? renderActiveShape : null}
             data={data}
             cx="50%"
             cy="50%"
