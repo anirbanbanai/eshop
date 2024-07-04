@@ -103,11 +103,12 @@ const Dashboard = () => {
             handleBack();
             // setIsClickedBackButton(true)
           }}
-          className="border rounded-full shadow-sm bg-white text-primary hover:shadow-md  text-sm  2xl:text-base px-8 py-1.5  duration-200  mb-2 transition-colors flex items-center gap-2"
+          className="border rounded-full shadow-sm bg-white text-primary hover:shadow-md  text-sm  2xl:text-base px-8 py-1.5  duration-200  mb-2 transition-colors flex items-center gap-2 max-md:hidden"
         >
          <Link className="text-orange-500" href="/">Back</Link> 
        <p className="w-8 "><ImSpinner10 className="w-5 h-5 mx-auto animate-spin text-primary " /></p>
         </button>
+
       </div>
 
       <div className=" my-3 ml-[1px] z-10 scrollbar-hide">
