@@ -10,27 +10,27 @@ const Navbar = () => {
   const NavItem = (
     <>
       <Link className="flex gap-1 items-center" href={"/"}>
-        <CiHome className="text-xl " />
+        <CiHome className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Home</p>
       </Link>
 
       <Link className="flex gap-1 items-center" href={"/dashboard"}>
-        <CiGrid42 className="text-xl" />
+        <CiGrid42 className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
       </Link>
 
       <Link className="flex gap-1 items-center" href={"/chat"}>
       
-        <BsChatDotsFill className="text-xl"/>
+        <BsChatDotsFill className="text-xl text-orange-500 "/>
         <p className="max-lg:hidden text-sm font-semibold">Chat</p>
       </Link>
       <Link className="flex gap-1 items-center" href={"/cart"}>
-        <BiSolidCartDownload className="text-xl" />
+        <BiSolidCartDownload className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Cart</p>
       </Link>
 
       <Link className="flex gap-1 items-center" href={"/"}>
-        <GiSkills className="text-xl" />
+        <GiSkills className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">About-Us</p>
       </Link>
     </>
@@ -39,10 +39,10 @@ const Navbar = () => {
   return (
     <div className=" z-30 max-w-7xl  mx-auto flex justify-between px-5 py-3   bg-white  max-md:hidden">
       <div className="flex gap-2 items-center bg-white">
-        <FcDataConfiguration className="text-3xl" />
+        {/* <FcDataConfiguration className="text-3xl" /> */}
         <a className="btn btn-ghost normal-case text-3xl sm:text-4xl lg:text-5xl  font-bold">
           <span className="text-red-500">E</span>
-          <span className="text-blue-500">Shop</span>
+          <span className="text-purple-500">Shop</span>
         </a>
       </div>
 

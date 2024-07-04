@@ -379,7 +379,7 @@ function ChattingInsights() {
         {insights?.map((insight, index) => (
           <div
             key={index}
-            className="shadow rounded-primary p-4 flex flex-row items-center gap-x-2 transition-all border border-transparent hover:border-black hover:shadow-none cursor-default"
+            className="shadow rounded-2xl p-4 flex flex-row items-center gap-x-2 transition-all border border-transparent hover:border-black hover:shadow-none cursor-default"
           >
             <div className="h-10 w-10">
               <Image
@@ -457,7 +457,7 @@ function PricingInsights() {
         {insights?.map((insight, index) => (
           <div
             key={index}
-            className="shadow rounded-primary p-4 flex flex-row items-center gap-x-2 transition-all border border-transparent hover:border-black hover:shadow-none cursor-default"
+            className="shadow rounded-2xl rounded-primary p-4 flex flex-row items-center gap-x-2 transition-all border border-transparent hover:border-black hover:shadow-none cursor-default"
           >
             <div className="h-10 w-10">
               <Image
