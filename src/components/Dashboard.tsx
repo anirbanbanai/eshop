@@ -9,10 +9,11 @@ import Details from "./dashboard/Details";
 import Link from "next/link";
 import { ImSpinner10 } from "react-icons/im";
 import Intigration from "./dashboard/Intigration";
+import MainTab from "./dashboard/Tabs";
 
 const components = [
   <Details/>,
-  <h2>aijurney</h2>,
+ <MainTab/>,
   <Intigration/>,
   <h2>sandbox</h2>,
 ];
@@ -61,7 +62,7 @@ const Dashboard = () => {
 
   return (
   
-    <section className="max-w-4xl mx-auto grid grid-cols-1 py-10 mt-4 gap-y-0">
+    <section className="px-5 max-w-4xl mx-auto grid grid-cols-1 py-10 mt-4 gap-y-0">
       <div className="  w-full -mt-4 -ml-[1px] flex flex-row z-0 overflow-x-auto gap-4 items-center justify-between">
         <div className="flex flex-row items-center gap-0 overflow-x-auto whitespace-nowrap">
           {items.map((item) => (

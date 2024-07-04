@@ -1,5 +1,8 @@
 import Image from "next/image";
 import React from "react";
+import ButtonAll from "../common/ButtonAll";
+import Link from "next/link";
+import ButtonAll2 from "../common/ButtonAll2";
 
 const Banner = () => {
   return (
@@ -14,6 +17,9 @@ const Banner = () => {
             repudiandae velit fuga odit tenetur eligendi accusantium dolores,
             dicta, esse voluptates obcaecati sapiente?
           </h3>
+          <Link href='/dashboard' className="mt-5">
+            <ButtonAll2>Get Started</ButtonAll2>
+          </Link>
         </div>
       </div>
 
