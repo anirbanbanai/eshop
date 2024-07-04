@@ -64,7 +64,7 @@ const Dashboard = () => {
 
   return (
   
-    <section className="px-5 py-5 max-w-4xl mx-auto grid grid-cols-1  gap-y-0">
+    <section className="md:px-5 py-5 max-w-4xl mx-auto grid grid-cols-1  gap-y-0">
       <div className="  w-full -mt-4 -ml-[1px] flex flex-row z-0 overflow-x-auto gap-4 items-center justify-between">
         <div className="flex flex-row items-center gap-0 overflow-x-auto whitespace-nowrap">
           {items.map((item) => (
