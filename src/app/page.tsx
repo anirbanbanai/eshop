@@ -4,7 +4,7 @@ import Integrate from "@/components/dashboard/Integrate";
 
 export default function Home() {
   return (
-    <main className="px-5">
+    <main className="px-2 md:px-5 ">
       <Banner/>
       <Analysis/>
       <Integrate/>

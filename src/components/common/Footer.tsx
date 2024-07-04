@@ -4,7 +4,7 @@ import { IoLogoInstagram, IoLogoTwitter } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="max-w-7xl mx-auto px-5 py-3 flex justify-evenly gap-3 bg-slate-200 ">
+    <div className="max-w-7xl mx-auto px-5 py-3 flex justify-evenly gap-3 bg-slate-200 my-11">
       <div>
         <h2 className="font-semibold">Service</h2>
         <div className="flex flex-col">

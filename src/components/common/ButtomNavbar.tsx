@@ -6,7 +6,7 @@ import { GiSkills } from "react-icons/gi";
 
 const ButtomNavbar = () => {
   return (
-    <div className="bg-slate-100 py-4 px-4 fixed bottom-0 z-50 w-full  bg-glassmorphism  backdrop-blur-lg xs:px-7 md:hidden ">
+    <div className="bg-slate-200 py-4 px-4 fixed bottom-0 z-50 w-full  bg-glassmorphism  backdrop-blur-lg xs:px-7 md:hidden ">
       <ul className="overflow-x-auto flex gap-2 justify-between items-center">
         <Link className="flex gap-1 items-center" href={"/"}>
           <CiHome className="text-xl text-orange-600 " />
