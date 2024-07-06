@@ -25,7 +25,7 @@ import Image from "next/image";
 
 const Analysis = () => {
   return (
-    <section className="bg-white p-4 rounded-primary grid grid-cols-12 gap-4 max-w-4xl mx-auto">
+    <section className="bg-white md:p-4 rounded-primary grid grid-cols-12 gap-4 max-w-4xl mx-auto">
       <GeneratedMessages />
       <MessagesPerPlatform />
       <ChattingInsights />
