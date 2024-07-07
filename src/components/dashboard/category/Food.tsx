@@ -66,7 +66,7 @@ const Food = () => {
     },
   ];
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div>

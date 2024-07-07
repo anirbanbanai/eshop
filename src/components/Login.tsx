@@ -83,13 +83,13 @@ const Login = () => {
   //   };
 
   return (
-    <div className="grid max-w-7xl mx-auto md:grid-cols-2 min-h-[80vh]">
-      <div className="my-auto p-5 max-md:hidden">
+    <div className="bg-pink-50 grid max-w-7xl mx-auto md:grid-cols-2 min-h-[80vh]">
+      <div className="my-auto mx-auto p-5 max-md:hidden">
         {/* <img src="/signup.png" alt="Login illustration" /> */}
-        <Image alt="/signup.png" src={"/signup.png"} width={500} height={250} />
+        <Image className="mx-auto" alt="/signup.png" src={"/signup.png"} width={300} height={200} />
       </div>
 
-      <div className="my-auto p-5 bg-slate-100 border border-orange-500 rounded-2xl m-5">
+      <div className="my-auto  p-5 bg-slate-100 border border-orange-500 rounded-2xl m-5">
         <h1 className="text-3xl font-semibold text-center text-[#333333]">
           Welcome back!
         </h1>

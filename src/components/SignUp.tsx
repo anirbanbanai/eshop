@@ -1,11 +1,164 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
+"use client";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
+import Image from "next/image";
+import ButtonAll2 from "./common/ButtonAll2";
+
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
 const SignUp = () => {
-    return (
-        <div>
-            sign uo
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+    reset,
+  } = useForm<FormData>();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async (data: FormData) => {
+    if (data.password !== data.confirmPassword) {
+      setError("confirmPassword", {
+        type: "manual",
+        message: "Passwords do not match",
+      });
+      return;
+    }
+    console.log(data);
+    // Your sign-up logic here
+  };
+
+  return (
+    <div className="bg-pink-50 grid max-w-7xl mx-auto md:grid-cols-2 min-h-[80vh]">
+      <div className="my-auto mx-auto p-5 max-md:hidden">
+        <Image className="mx-auto" alt="/signup.png" src={"/signup.png"} width={300} height={200} />
+      </div>
+
+      <div className="my-auto p-5 bg-slate-100 border border-orange-500 rounded-2xl m-5">
+        <h1 className="text-3xl font-semibold text-center text-[#333333]">
+          Welcome back!
+        </h1>
+        <h2 className="mt-2 font-medium text-center text-[#333333]">
+          Enter your credentials to create your account
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 w-full">
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Name
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="inline-full-name"
+                {...register("name", { required: true })}
+                type="text"
+              />
+              {errors.name && <p className="text-red-500">Name is required</p>}
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Email
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="inline-email"
+                {...register("email", { required: true })}
+                type="email"
+              />
+              {errors.email && <p className="text-red-500">Email is required</p>}
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Password
+              </label>
+            </div>
+            <div className="md:w-2/3 relative">
+              <input
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="inline-password"
+                {...register("password", { required: true })}
+                type={showPassword ? "text" : "password"}
+                placeholder="******************"
+              />
+              {errors.password && <p className="text-red-500">Password is required</p>}
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Confirm Password
+              </label>
+            </div>
+            <div className="md:w-2/3 relative">
+              <input
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                id="inline-confirm-password"
+                {...register("confirmPassword", { required: true })}
+                type={showPassword ? "text" : "password"}
+                placeholder="******************"
+              />
+              {errors.confirmPassword && (
+                <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex justify-center items-center mb-6">
+            <input
+              className="mr-2 leading-tight"
+              type="checkbox"
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            <label className="text-sm text-gray-500">Show Password</label>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3"></div>
+            <label className="md:w-2/3 block text-gray-500 font-bold">
+              <input className="mr-2 leading-tight" type="checkbox" />
+              <span className="text-sm">Send me your newsletter!</span>
+            </label>
+          </div>
+          <div className="mx-auto flex justify-center">
+            <ButtonAll2 type="submit">Sign-up</ButtonAll2>
+          </div>
+        </form>
+        <div className="mx-auto">
+          <button
+            //   onClick={handleGoogleLogin}
+            className="bg-white border px-2 py-2 rounded-2xl flex gap-2 mx-auto"
+            disabled={isPopupOpen}
+          >
+            <FcGoogle className="text-xl" /> Sign In with Google
+          </button>
         </div>
-    );
+
+        <div className="flex justify-center w-full mt-5">
+          <p>
+            Already have an account?
+            <Link href="/login" className="text-[#20A3BA] font-semibold">
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SignUp;
