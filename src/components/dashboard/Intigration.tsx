@@ -20,7 +20,7 @@ const Intigration = () => {
 
         <article className="grid grid-cols-1 gap-y-4">
           <h3 className="font-bold md:text-2xl lg:text-3xl 2xl:text-5xl text-primary">
-            AI Integrations
+            Your Cart
           </h3>
           <p className="text-sm text-gray-900">
             Connect your preferred platforms seamlessly with our AI to empower

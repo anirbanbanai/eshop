@@ -15,7 +15,7 @@ interface Product {
   rating: number;
 }
 
-const Food: React.FC = () => {
+const Clothes: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -27,7 +27,7 @@ const Food: React.FC = () => {
           "http://localhost:5000/api/v1/products"
         );
         const filteredProducts = response.data.filter(
-          (product) => product.category === "food"
+          (product) => product.category === "clothes"
         );
         setProducts(filteredProducts);
       } catch (err) {
@@ -75,4 +75,4 @@ const Food: React.FC = () => {
   );
 };
 
-export default Food;
+export default Clothes;

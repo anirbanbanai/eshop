@@ -36,7 +36,7 @@ const Dashboard = () => {
     },
     {
       _id: 3,
-      name: "Integrations",
+      name: "Cart",
       icon: "/integrations.svg",
       selectedIcon: "/integrations-selected.svg",
     },
@@ -66,7 +66,8 @@ const Dashboard = () => {
   
     <section className="md:px-5 py-5 max-w-4xl mx-auto grid grid-cols-1  gap-y-0">
       <div className="  w-full -mt-4 -ml-[1px] flex flex-row z-0 overflow-x-auto gap-4 items-center justify-between">
-        <div className="flex flex-row items-center gap-0 overflow-x-auto whitespace-nowrap">
+
+        <div className="flex flex-row items-center gap-0 overflow-x-auto border  whitespace-nowrap">
           {items.map((item) => (
             <div
               className="relative "

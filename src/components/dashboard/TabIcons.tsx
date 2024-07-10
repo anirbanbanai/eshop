@@ -4,7 +4,7 @@ function TabBGIcon({ bgColor }:any) {
         xmlns="http://www.w3.org/2000/svg"
         // width="301"
         // height="104"
-        className="h-full w-full rounded-none"
+        className="h-full w-full bg-pink-400 rounded-none"
         fill="none"
         viewBox="0 0 301 104"
       >

@@ -15,7 +15,7 @@ interface Product {
   rating: number;
 }
 
-const Food: React.FC = () => {
+const All: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -26,10 +26,8 @@ const Food: React.FC = () => {
         const response = await axios.get<Product[]>(
           "http://localhost:5000/api/v1/products"
         );
-        const filteredProducts = response.data.filter(
-          (product) => product.category === "food"
-        );
-        setProducts(filteredProducts);
+        // console.log(response.data);
+        setProducts(response.data);
       } catch (err) {
         if (axios.isAxiosError(err)) {
           setError(err);
@@ -75,4 +73,4 @@ const Food: React.FC = () => {
   );
 };
 
-export default Food;
+export default All;
