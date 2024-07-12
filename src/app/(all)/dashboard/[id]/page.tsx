@@ -49,7 +49,13 @@ const SingleProduct = ({ params }: any) => {
   return (
     <div className="max-w-[500px] mx-auto border hover:border-orange-500 rounded-2xl m-3 py-3 px-2">
       <div>
-        <img className="rounded-2xl" src={product?.Image} alt="img" width={500} height={200} />
+        <img
+          className="rounded-2xl"
+          src={product?.Image}
+          alt="img"
+          width={500}
+          height={200}
+        />
       </div>
       <div>
         <h2 className="text-sm font-semibold">{product?.product_name}</h2>

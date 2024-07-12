@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import ButtonAll from "../common/ButtonAll";
+import { ButtonAll } from "../common/ButtonAll";
 
 const Integrate = () => {
   const companies = [

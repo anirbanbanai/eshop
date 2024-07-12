@@ -5,17 +5,19 @@ import img1 from "../../image/signupin/Login.svg";
 // import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-// import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebase.config";
 // import { auth, googleProvider } from "../../firebase";
 import { FcGoogle } from "react-icons/fc";
-import ButtonAll from "./common/ButtonAll";
 import Link from "next/link";
 import Image from "next/image";
 import ButtonAll2 from "./common/ButtonAll2";
-// import { useRouter } from "next/router";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
-  //   const navigate = useRouter();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -26,30 +28,32 @@ const Login = () => {
 
   const onSubmit = async (data: any) => {
     console.log(data);
-    // try {
-    //   await signInWithEmailAndPassword(auth, data.email, data.password);
-    //   Swal.fire({
-    //     position: "top",
-    //     icon: "success",
-    //     title: "Login successful",
-    //     showConfirmButton: false,
-    //     timer: 1500,
-    //   });
-    //   reset();
-    //   navigate("/"); // Redirect to the desired route after successful login
-    //   setTimeout(() => {
-    //     window.location.reload();
-    //   }, 500);
-    // } catch (error) {
-    //   console.error("Login error:", error);
-    //   Swal.fire({
-    //     position: "top",
-    //     icon: "error",
-    //     title: "Login failed",
-    //     text: error.message || "Please try again later",
-    //     showConfirmButton: true,
-    //   });
-    // }
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      const ress = await axios.post(
+        "http://localhost:5000/api/v1/auth/login",
+        data
+      );
+      console.log(ress);
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Login successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      reset();
+      router.push("/");
+    } catch (error:any) {
+      console.error("Login error:", error);
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Login failed",
+        text: error.message || "Please try again later",
+        showConfirmButton: true,
+      });
+    }
   };
 
   //   const handleGoogleLogin = async () => {
