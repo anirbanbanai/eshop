@@ -8,8 +8,6 @@ const ButtonAll = ({ children }: any) => {
   );
 };
 
-export  {ButtonAll};
-
 const ButtonGreen = ({ children }: any) => {
   return (
     <button className="px-2 py-1 my-2 border border-green-500 rounded-2xl hover:bg-orange-100">
@@ -17,5 +15,21 @@ const ButtonGreen = ({ children }: any) => {
     </button>
   );
 };
+const ButtonOnclick = ({onClick, children }: any) => {
+  return (
+    <button onClick={onClick} className="px-2 py-1 my-2 border border-green-500 rounded-2xl hover:bg-orange-100">
+      {children}
+    </button>
+  );
+};
+const ButtonRedOnclick = ({onClick, children }: any) => {
+  return (
+    <button onClick={onClick} className="px-2 py-1 my-2 border border-green-500 rounded-2xl hover:bg-orange-100">
+      {children}
+    </button>
+  );
+};
 
-export  {ButtonGreen};
+
+
+export { ButtonGreen, ButtonAll,ButtonOnclick, ButtonRedOnclick };

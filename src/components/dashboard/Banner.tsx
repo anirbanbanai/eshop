@@ -1,10 +1,15 @@
+"use client"
 import Image from "next/image";
 import React from "react";
-import ButtonAll from "../common/ButtonAll";
 import Link from "next/link";
 import ButtonAll2 from "../common/ButtonAll2";
+import useAuthUser from "../auth/getUser";
+import { auth } from "../../../firebase.config";
+// import useAuthUser from "../auth/getUser";
+// import { auth } from "../../../firebase.config";
 
 const Banner = () => {
+  const { user } = useAuthUser(auth);
   return (
     <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-3">
       <div className=" flex items-center">
@@ -17,9 +22,12 @@ const Banner = () => {
             repudiandae velit fuga odit tenetur eligendi accusantium dolores,
             dicta, esse voluptates obcaecati sapiente?
           </h3>
-          <Link href='/dashboard' className="mt-5">
+         {user && <Link href='/dashboard' className="mt-5">
             <ButtonAll2>Get Started</ButtonAll2>
-          </Link>
+          </Link>}
+         {!user && <Link href='/login' className="mt-5">
+            <ButtonAll2>Get Started</ButtonAll2>
+          </Link>}
         </div>
       </div>
 

@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { ButtonGreen } from "@/components/common/ButtonAll";
+import useAuthUser from "@/components/auth/getUser";
+import { ButtonGreen, ButtonOnclick } from "@/components/common/ButtonAll";
 import SmButton from "@/components/common/SmButton";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { CiEdit, CiShoppingCart } from "react-icons/ci";
 import { MdAutoDelete } from "react-icons/md";
+import { auth } from "../../../../../firebase.config";
+import Swal from "sweetalert2";
 interface Product {
   _id: string;
   product_name: string;
@@ -13,15 +16,16 @@ interface Product {
   price: number;
   category: string;
   stock: number;
-  Image: string;
+  image: string;
   rating: number;
 }
 const SingleProduct = ({ params }: any) => {
+  const { user } = useAuthUser(auth);
   const [product, setProducts] = useState<Product>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  console.log(params.id);
-  console.log(product);
+  // console.log(params.id);
+  // console.log(product);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -46,12 +50,38 @@ const SingleProduct = ({ params }: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleAddToCart = async (data: any) => {
+    // console.log(data);
+    const alldata = {
+      addedBy: user?._id,
+      product_id: data._id,
+      product_name: data.product_name,
+      product_image: data.image,
+      product_price: data.price,
+    };
+    // console.log(alldata);
+    const added = await axios.post(
+      "http://localhost:5000/api/v1/cart",
+      alldata
+    );
+
+    // console.log(added);
+    if (added.data) {
+      Swal.fire({
+        icon: "success",
+        title: "Add to cart successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div className="max-w-[500px] mx-auto border hover:border-orange-500 rounded-2xl m-3 py-3 px-2">
       <div>
         <img
           className="rounded-2xl"
-          src={product?.Image}
+          src={product?.image}
           alt="img"
           width={500}
           height={200}
@@ -66,13 +96,13 @@ const SingleProduct = ({ params }: any) => {
       </div>
       <div className=" flex flex-col items-center">
         <div className="flex gap-3 justify-center">
-          <ButtonGreen>
+          <ButtonOnclick onClick={() => handleAddToCart(product)}>
             <div className="flex">
               Add to Cart <CiShoppingCart className="text-2xl text-green-500" />
             </div>
-          </ButtonGreen>
+          </ButtonOnclick>
         </div>
-
+        {/* 
         <div className="flex gap-3 justify-center">
           <SmButton>
             <MdAutoDelete className="text-2xl text-red-500" />
@@ -80,7 +110,7 @@ const SingleProduct = ({ params }: any) => {
           <ButtonGreen className="">
             <CiEdit className="text-2xl text-green-500" />
           </ButtonGreen>
-        </div>
+        </div> */}
       </div>
     </div>
   );
