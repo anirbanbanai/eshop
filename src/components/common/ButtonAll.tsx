@@ -8,4 +8,14 @@ const ButtonAll = ({ children }: any) => {
   );
 };
 
-export default ButtonAll;
+export  {ButtonAll};
+
+const ButtonGreen = ({ children }: any) => {
+  return (
+    <button className="px-2 py-1 my-2 border border-green-500 rounded-2xl hover:bg-orange-100">
+      {children}
+    </button>
+  );
+};
+
+export  {ButtonGreen};

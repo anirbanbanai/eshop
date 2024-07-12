@@ -3,6 +3,8 @@ import SmButton from "@/components/common/SmButton";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MdAutoDelete } from "react-icons/md";
+import ProductCard from "./ProductCard";
 
 interface Product {
   _id: string;
@@ -54,20 +56,7 @@ const Bike: React.FC = () => {
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-4  md:grid-cols-3">
           {products.map((product) => (
-            <div
-              className="border hover:border-orange-500 m-2 rounded-2xl p-2"
-              key={product._id}
-            >
-              <img src={product.Image} alt="img" width={500} height={200} />
-              <h2 className="text-sm font-semibold">{product.product_name}</h2>
-              <h2 className="text-[12px]">{product.product_description}</h2>
-              <h2 className="text-sm">
-                Price: <span className="font-semibold">{product.price}$</span>
-              </h2>
-              <div className="flex justify-center">
-                <SmButton>Know More</SmButton>
-              </div>
-            </div>
+            <ProductCard product={product} key={product._id} />
           ))}
         </div>
       </div>

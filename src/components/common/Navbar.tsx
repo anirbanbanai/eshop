@@ -1,11 +1,12 @@
 import { CiHome, CiGrid42, CiSatellite1, CiGlobe } from "react-icons/ci";
 import { GiSkills } from "react-icons/gi";
-import ButtonAll from "./ButtonAll";
+// import ButtonAll from "./ButtonAll";
 import { FcDataConfiguration } from "react-icons/fc";
 import Link from "next/link";
 import { BsChatDotsFill } from "react-icons/bs";
 import { BiSolidCartDownload } from "react-icons/bi";
 import { FaAmericanSignLanguageInterpreting } from "react-icons/fa";
+import { ButtonAll } from "./ButtonAll";
 
 const Navbar = () => {
   const NavItem = (
