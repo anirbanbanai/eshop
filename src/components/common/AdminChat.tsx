@@ -1,9 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
-import useAuthUser from "../auth/getUser";
-import { auth } from "../../../firebase.config";
 
 interface Message {
   _id?: string;
@@ -15,26 +14,49 @@ interface Message {
 }
 
 interface User {
+  _id: string;
   name: string;
-  id: string;
+  image: string; // Assuming user data has an img property
 }
 
 interface IFormInput {
   message: string;
 }
 
-const UserChat: React.FC = () => {
-  const { user } = useAuthUser(auth);
+const AdminChat: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
-
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const { register, handleSubmit, reset } = useForm<IFormInput>();
 
-  // Fetch messages when the component mounts or when the user changes
   useEffect(() => {
-    if (user) {
-      fetchMessages(user._id);
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      // Fetch all users
+      const usersResponse = await axios.get("http://localhost:5000/api/v1/user");
+      const allUsers = usersResponse.data;
+
+      // Fetch messages to find unique user IDs who have messaged the admin
+      const messagesResponse = await axios.get("http://localhost:5000/api/v1/messages");
+      const messages = messagesResponse.data;
+
+      // Extract unique user IDs who sent messages to the admin
+      const userIds = new Set(messages
+        .filter((msg: Message) => msg.receiver === "admin") // Filter messages where the receiver is the admin
+        .map((msg: Message) => msg.sender)
+      );
+
+      // Filter users based on the unique IDs from messages
+      const filteredUsers = allUsers.filter((user: User) => userIds.has(user._id));
+
+      setUsers(filteredUsers);
+    } catch (error) {
+      console.error("Error fetching users:", error);
     }
-  }, [user]);
+  };
 
   const fetchMessages = async (userId: string) => {
     try {
@@ -47,12 +69,17 @@ const UserChat: React.FC = () => {
     }
   };
 
+  const handleUserSelect = (userId: string) => {
+    setCurrentUserId(userId);
+    fetchMessages(userId);
+  };
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    if (data.message.trim() && user) {
+    if (data.message.trim() && currentUserId) {
       const newMessage = {
         text: data.message,
-        sender: user._id,
-        receiver: "admin",
+        sender: "admin", // Set sender to admin's ID
+        receiver: currentUserId, // Use current user ID as receiver
         seen: false,
       };
       try {
@@ -61,7 +88,7 @@ const UserChat: React.FC = () => {
           newMessage
         );
         setMessages((prevMessages) => [...prevMessages, response.data]);
-        reset(); // Clear the input field
+        reset(); // Clear input field
       } catch (error) {
         console.error("Error sending message:", error);
       }
@@ -88,20 +115,39 @@ const UserChat: React.FC = () => {
 
   return (
     <div className="flex h-[500px] max-w-5xl mx-auto">
+      <div className="w-1/4 bg-gray-200 p-4">
+        <h2 className="text-xl font-bold mb-4">Users</h2>
+        <ul>
+          {users.map((user) => (
+            <li
+              key={user._id}
+              className={`p-2 border mt-2 rounded-lg cursor-pointer ${
+                currentUserId === user._id ? "bg-blue-500 text-white" : "bg-white"
+              }`}
+              onClick={() => handleUserSelect(user._id)}
+            >
+              <div className="flex items-center">
+                <img src={user.image} alt={user.name} className="w-8 h-8 rounded-full mr-2" />
+                <span>{user.name}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="flex-1 flex flex-col p-4 bg-gray-100">
-        <h2 className="text-xl font-bold mb-4">Chat with Admin</h2>
+        <h2 className="text-xl font-bold mb-4">Chat with User</h2>
         <div className="flex-1 overflow-auto p-4 bg-white rounded-lg shadow-lg">
           {messages.map((msg) => (
             <div
               key={msg._id}
               className={`p-2 my-2 ${
-                msg.sender === user?._id ? "text-right" : "text-left"
+                msg.sender === "admin" ? "text-right" : "text-left"
               }`}
               onClick={() => markMessageAsSeen(msg)} // Mark message as seen on click
             >
               <span
                 className={`inline-block px-4 py-2 rounded-lg ${
-                  msg.sender === user?._id
+                  msg.sender === "admin"
                     ? "bg-blue-500 text-white"
                     : msg.seen
                     ? "bg-gray-200"
@@ -109,7 +155,6 @@ const UserChat: React.FC = () => {
                 }`}
               >
                 {msg.text}
-                {/* Display timestamp */}
                 {/* <div className="text-xs text-gray-500">
                   {new Date(msg.timestamp || '').toLocaleString()}
                 </div> */}
@@ -136,4 +181,4 @@ const UserChat: React.FC = () => {
   );
 };
 
-export default UserChat;
+export default AdminChat;

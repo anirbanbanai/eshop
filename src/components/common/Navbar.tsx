@@ -62,10 +62,15 @@ const Navbar: React.FC = () => {
         <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
       </Link>
 
-      <Link className="flex gap-1 items-center" href={"/chat"}>
+     {user?.role ==="user" && <Link className="flex gap-1 items-center" href={"/chat"}>
         <BsChatDotsFill className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Chat</p>
-      </Link>
+      </Link>}
+
+     {user?.role==="admin" && <Link className="flex gap-1 items-center" href={"/admin-chat"}>
+        <BsChatDotsFill className="text-xl text-orange-500 " />
+        <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
+      </Link>}
 
       <Link className="flex gap-1 items-center" href={"/cart"}>
         <BiSolidCartDownload className="text-xl text-orange-500 " />
