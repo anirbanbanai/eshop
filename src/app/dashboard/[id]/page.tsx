@@ -7,8 +7,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CiEdit, CiShoppingCart } from "react-icons/ci";
 import { MdAutoDelete } from "react-icons/md";
-import { auth } from "../../../../../firebase.config";
 import Swal from "sweetalert2";
+import { auth } from "../../../../firebase.config";
 interface Product {
   _id: string;
   product_name: string;
