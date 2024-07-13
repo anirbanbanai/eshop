@@ -37,8 +37,10 @@ const Navbar: React.FC = () => {
           showConfirmButton: false,
           timer: 1500,
         }).then(() => {
-          router.push("/");
-          window.location.reload();
+          router.push("/login");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         });
       } catch (error: any) {
         Swal.fire({
@@ -62,15 +64,19 @@ const Navbar: React.FC = () => {
         <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
       </Link>
 
-     {user?.role ==="user" && <Link className="flex gap-1 items-center" href={"/chat"}>
-        <BsChatDotsFill className="text-xl text-orange-500 " />
-        <p className="max-lg:hidden text-sm font-semibold">Chat</p>
-      </Link>}
+      {user?.role === "user" && (
+        <Link className="flex gap-1 items-center" href={"/chat"}>
+          <BsChatDotsFill className="text-xl text-orange-500 " />
+          <p className="max-lg:hidden text-sm font-semibold">Chat</p>
+        </Link>
+      )}
 
-     {user?.role==="admin" && <Link className="flex gap-1 items-center" href={"/admin-chat"}>
-        <BsChatDotsFill className="text-xl text-orange-500 " />
-        <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
-      </Link>}
+      {user?.role === "admin" && (
+        <Link className="flex gap-1 items-center" href={"/admin-chat"}>
+          <BsChatDotsFill className="text-xl text-orange-500 " />
+          <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
+        </Link>
+      )}
 
       <Link className="flex gap-1 items-center" href={"/cart"}>
         <BiSolidCartDownload className="text-xl text-orange-500 " />
@@ -103,10 +109,7 @@ const Navbar: React.FC = () => {
           </Link>
         ) : (
           <>
-        
-            <ButtonOnclick onClick={handleLogout}>
-              LogOut
-            </ButtonOnclick>
+            <ButtonOnclick onClick={handleLogout}>LogOut</ButtonOnclick>
             <Link href="/profile">
               <img
                 src={user?.image}

@@ -2,7 +2,7 @@
 "use client";
 import useAuthUser from "@/components/auth/getUser";
 import React from "react";
-import { auth } from "../../../../firebase.config";
+import { auth } from "../../../firebase.config";
 
 const Profile = () => {
   const { user } = useAuthUser(auth);
