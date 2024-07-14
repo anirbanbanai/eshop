@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
+"use client";
 import Link from "next/link";
 import { BiSolidCartDownload } from "react-icons/bi";
 import { BsChatDotsFill } from "react-icons/bs";
@@ -12,6 +12,7 @@ import { auth } from "../../../firebase.config";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { MdAddShoppingCart } from "react-icons/md";
 
 const ButtomNavbar = () => {
   const router = useRouter();
@@ -64,19 +65,31 @@ const ButtomNavbar = () => {
           <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
         </Link>
 
-        <Link className="flex gap-1 items-center" href={"/chat"}>
-          <BsChatDotsFill className="text-2xl text-orange-600 " />
-          <p className="max-lg:hidden text-sm font-semibold">Chat</p>
-        </Link>
-        <Link className="flex gap-1 items-center" href={"/cart"}>
-          <BiSolidCartDownload className="text-2xl text-orange-600 " />
-          <p className="max-lg:hidden text-sm font-semibold">Cart</p>
-        </Link>
+        {user?.role === "admin" && (
+          <Link className="flex gap-1 items-center" href={"/add-product"}>
+            <MdAddShoppingCart className="text-xl text-orange-500 " />
+            <p className="max-lg:hidden text-sm font-semibold">Add Product</p>
+          </Link>
+        )}
 
-        {/* <Link className="flex gap-1 items-center" href={"/"}>
+        {user?.role === "user" && (
+          <Link className="flex gap-1 items-center" href={"/chat"}>
+            <BsChatDotsFill className="text-xl text-orange-500 " />
+            <p className="max-lg:hidden text-sm font-semibold">Chat</p>
+          </Link>
+        )}
+
+        {user?.role === "admin" && (
+          <Link className="flex gap-1 items-center" href={"/admin-chat"}>
+            <BsChatDotsFill className="text-xl text-orange-500 " />
+            <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
+          </Link>
+        )}
+
+        <Link className="flex gap-1 items-center" href={"/"}>
           <GiSkills className="text-2xl text-orange-600 " />
           <p className="max-lg:hidden text-sm font-semibold">About-Us</p>
-        </Link> */}
+        </Link>
         <div className="flex gap-3 items-center">
           {!user ? (
             <Link href="/login">
