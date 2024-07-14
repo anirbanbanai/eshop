@@ -128,14 +128,14 @@ const Carts: React.FC = () => {
     <div>
       <h2 className="text-2xl font-semibold text-center my-5">Cart</h2>
       <div className="md:grid grid-cols-4">
-        <div className="m-5 col-span-3 grid md:grid-cols-2">
+        <div className="m-5 col-span-3 grid sm:grid-cols-2">
           {cart.map((item) => (
             <div
               className="border hover:border-orange-500  mx-auto my-4 p-3  rounded-2xl"
               key={item._id}
             >
               <img
-                className="w-[300px] h-[200px] mx-auto rounded-xl"
+                className="max-sm:w-[300px] max-sm:h-[200px]  w-[200px] h-[150px] mx-auto rounded-xl"
                 src={item.product_image}
                 alt="img"
               />
