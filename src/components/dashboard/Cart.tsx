@@ -13,7 +13,7 @@ interface CartItem {
   product_id: string;
   product_image: string;
   product_name: string;
-  product_price: number;
+  product_price: string; // Product price is stored as a string in the database
   addedBy: string;
 }
 
@@ -22,6 +22,7 @@ const Carts: React.FC = () => {
   const [cart, setCarts] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -32,12 +33,17 @@ const Carts: React.FC = () => {
 
       try {
         const response = await axios.get("http://localhost:5000/api/v1/cart");
-        // console.log(response.data);
         const filteredCart = response.data.filter(
           (item: CartItem) => item.addedBy === user._id
         );
-        console.log(filteredCart);
         setCarts(filteredCart);
+
+        // Calculate the total price and convert string to number
+        const total = filteredCart.reduce(
+          (acc:any, item:any) => acc + parseFloat(item.product_price),
+          0
+        );
+        setTotalPrice(total);
       } catch (err) {
         setError("Error fetching cart");
         console.error(err);
@@ -47,9 +53,11 @@ const Carts: React.FC = () => {
     };
 
     fetchCart();
-  }, [user?._id]); // Add user._id as a dependency
+  }, [user?._id]);
 
-  if (loading) return <div>
+  if (loading)
+    return (
+      <div>
         <div className="text-center">
           <div role="status">
             <svg
@@ -71,11 +79,11 @@ const Carts: React.FC = () => {
             <span className="sr-only">Loading...</span>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   if (error) return <div>{error}</div>;
 
   const handleDelete = async (id: string) => {
-    // console.log(id);
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -88,7 +96,7 @@ const Carts: React.FC = () => {
 
     if (result.isConfirmed) {
       try {
-        const del = await axios.delete(`http://localhost:5000/api/v1/cart/${id}`);
+        await axios.delete(`http://localhost:5000/api/v1/cart/${id}`);
         Swal.fire({
           icon: "success",
           title: "Deleted successfully",
@@ -106,33 +114,76 @@ const Carts: React.FC = () => {
       }
     }
   };
+
+  const handlePayment = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Payment successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-semibold text-center my-5">Cart</h2>
-      <div>
-        {cart.map((item) => (
-          <div
-            className="border hover:border-orange-500 max-w-[400px] mx-auto my-4 p-3 rounded-2xl"
-            key={item._id}
-          >
-            <img
-              className="w-[300px] h-[200px] mx-auto rounded-xl"
-              src={item.product_image}
-              alt="img"
-            />
-            <div className="flex gap-3 justify-between items-center my-3 mx-5">
-              <div>
-                <h3>Name: {item.product_name}</h3>
-                <h4>Price: ${item.product_price}</h4>
-              </div>
-              <div className=" flex justify-center">
-                <ButtonRedOnclick onClick={()=>handleDelete(item._id)}>
-                  <MdAutoDelete className="text-2xl text-red-500" />
-                </ButtonRedOnclick>
+      <div className="md:grid grid-cols-4">
+        <div className="m-5 col-span-3 grid md:grid-cols-2">
+          {cart.map((item) => (
+            <div
+              className="border hover:border-orange-500  mx-auto my-4 p-3  rounded-2xl"
+              key={item._id}
+            >
+              <img
+                className="w-[300px] h-[200px] mx-auto rounded-xl"
+                src={item.product_image}
+                alt="img"
+              />
+              <div className="flex gap-3 justify-between items-center my-3 mx-5">
+                <div>
+                  <h3>Name: {item.product_name}</h3>
+                  <h4>Price: ${item.product_price}</h4>
+                </div>
+                <div className="flex justify-center">
+                  <ButtonRedOnclick onClick={() => handleDelete(item._id)}>
+                    <MdAutoDelete className="text-2xl text-red-500" />
+                  </ButtonRedOnclick>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <div className=" md:fixed  right-0 border hover:border-orange-500 m-5  bg-slate-200 rounded-2xl px-5 py-3 ">
+          <h2>Total price: ${totalPrice.toFixed(2)}</h2>
+          <form className="mt-5">
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Card Number</label>
+              <input
+                type="text"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="1234 5678 9012 3456"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Expiration Date</label>
+              <input
+                type="text"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="MM/YY"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">CVV</label>
+              <input
+                type="text"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="123"
+              />
+            </div>
+            <ButtonOnclick onClick={handlePayment}>Pay Now</ButtonOnclick>
+          </form>
+        </div>
       </div>
     </div>
   );

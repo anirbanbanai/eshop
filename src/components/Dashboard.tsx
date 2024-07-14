@@ -11,12 +11,13 @@ import { ImSpinner10 } from "react-icons/im";
 import Intigration from "./dashboard/Intigration";
 import MainTab from "./dashboard/Tabs";
 import SendBox from "./dashboard/SendBox";
+import AddProductD from "./dashboard/AddData";
 
 const components = [
-  <MainTab/>,
-  <Details/>,
-  <Intigration/>,
-  <SendBox/>,
+  <MainTab />,
+  <Details />,
+  <Intigration />,
+  <SendBox />,
 ];
 
 const Dashboard = () => {
@@ -24,7 +25,7 @@ const Dashboard = () => {
     {
       _id: 1,
       name: "Category",
-   
+
       icon: "/details.svg",
       selectedIcon: "/details-selected.svg",
     },
@@ -50,7 +51,7 @@ const Dashboard = () => {
   const [selected, setSelected] = useState(1);
 
   const handleSetSelectedID = (id: number) => {
-    console.log(id);
+    // console.log(id);
     setSelected(id);
   };
 
@@ -58,15 +59,11 @@ const Dashboard = () => {
     console.log("saved");
   };
 
-  const handleBack = () => {
-    window.open("/");
-  };
+ 
 
   return (
-  
     <section className="md:px-5 py-5 max-w-4xl mx-auto grid grid-cols-1  gap-y-0">
       <div className="  w-full -mt-4 -ml-[1px] flex flex-row z-0 overflow-x-auto gap-4 items-center justify-between">
-
         <div className="flex flex-row items-center gap-0 overflow-x-auto border  whitespace-nowrap">
           {items.map((item) => (
             <div
@@ -97,19 +94,17 @@ const Dashboard = () => {
             </div>
           ))}
         </div>
-
-        <button
-          type="button"
-          onClick={() => {
-            handleBack();
-            // setIsClickedBackButton(true)
-          }}
-          className="border rounded-full shadow-sm bg-white text-primary hover:shadow-md  text-sm  2xl:text-base px-8 py-1.5  duration-200  mb-2 transition-colors flex items-center gap-2 max-md:hidden"
-        >
-         <Link className="text-orange-500" href="/">Back</Link> 
-       <p className="w-8 "><ImSpinner10 className="w-5 h-5 mx-auto animate-spin text-primary " /></p>
-        </button>
-
+        <Link className="text-orange-500" href="/">
+          <button
+            type="button"
+            className="border rounded-full shadow-sm bg-white text-primary hover:shadow-md  text-sm  2xl:text-base px-8 py-1.5  duration-200  mb-2 transition-colors flex items-center gap-2 max-md:hidden"
+          >
+            Back
+            <p className="w-8 ">
+              <ImSpinner10 className="w-5 h-5 mx-auto animate-spin text-primary " />
+            </p>
+          </button>
+        </Link>
       </div>
 
       <div className=" my-3 ml-[1px] z-10 scrollbar-hide">

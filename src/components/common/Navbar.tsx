@@ -12,6 +12,7 @@ import { auth } from "../../../firebase.config";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { MdAddShoppingCart } from "react-icons/md";
 
 const Navbar: React.FC = () => {
   const { user } = useAuthUser(auth);
@@ -63,6 +64,13 @@ const Navbar: React.FC = () => {
         <CiGrid42 className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
       </Link>
+
+      {user?.role === "admin" && (
+        <Link className="flex gap-1 items-center" href={"/add-product"}>
+          <MdAddShoppingCart className="text-xl text-orange-500 " />
+          <p className="max-lg:hidden text-sm font-semibold">Add Product</p>
+        </Link>
+      )}
 
       {user?.role === "user" && (
         <Link className="flex gap-1 items-center" href={"/chat"}>
