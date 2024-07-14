@@ -27,6 +27,7 @@ const AdminChat: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [currentUserName, setCurrentUserName] = useState<string | null>(null);
   const { register, handleSubmit, reset } = useForm<IFormInput>();
 
   useEffect(() => {
@@ -36,21 +37,28 @@ const AdminChat: React.FC = () => {
   const fetchUsers = async () => {
     try {
       // Fetch all users
-      const usersResponse = await axios.get("http://localhost:5000/api/v1/user");
+      const usersResponse = await axios.get(
+        "http://localhost:5000/api/v1/user"
+      );
       const allUsers = usersResponse.data;
 
       // Fetch messages to find unique user IDs who have messaged the admin
-      const messagesResponse = await axios.get("http://localhost:5000/api/v1/messages");
+      const messagesResponse = await axios.get(
+        "http://localhost:5000/api/v1/messages"
+      );
       const messages = messagesResponse.data;
 
       // Extract unique user IDs who sent messages to the admin
-      const userIds = new Set(messages
-        .filter((msg: Message) => msg.receiver === "admin") // Filter messages where the receiver is the admin
-        .map((msg: Message) => msg.sender)
+      const userIds = new Set(
+        messages
+          .filter((msg: Message) => msg.receiver === "admin") // Filter messages where the receiver is the admin
+          .map((msg: Message) => msg.sender)
       );
 
       // Filter users based on the unique IDs from messages
-      const filteredUsers = allUsers.filter((user: User) => userIds.has(user._id));
+      const filteredUsers = allUsers.filter((user: User) =>
+        userIds.has(user._id)
+      );
 
       setUsers(filteredUsers);
     } catch (error) {
@@ -69,8 +77,9 @@ const AdminChat: React.FC = () => {
     }
   };
 
-  const handleUserSelect = (userId: string) => {
+  const handleUserSelect = (userId: string, userName: string) => {
     setCurrentUserId(userId);
+    setCurrentUserName(userName);
     fetchMessages(userId);
   };
 
@@ -122,20 +131,36 @@ const AdminChat: React.FC = () => {
             <li
               key={user._id}
               className={`p-2 border mt-2 rounded-lg cursor-pointer ${
-                currentUserId === user._id ? "bg-blue-500 text-white" : "bg-white"
+                currentUserId === user._id
+                  ? "bg-blue-500 text-white"
+                  : "bg-white"
               }`}
-              onClick={() => handleUserSelect(user._id)}
+              onClick={() => handleUserSelect(user._id, user.name)}
             >
-              <div className="flex items-center">
-                <img src={user.image} alt={user.name} className="w-8 h-8 rounded-full mr-2" />
-                <span>{user.name}</span>
+              <div className="flex items-center max-sm:justify-center">
+                <img
+                  src={user.image}
+                  alt={user.name}
+                  className="w-8 h-8 rounded-full mr-2 "
+                />
+
+                <span className="max-sm:hidden">{user.name}</span>
               </div>
             </li>
           ))}
         </ul>
       </div>
       <div className="flex-1 flex flex-col p-4 bg-gray-100">
-        <h2 className="text-xl font-bold mb-4">Chat with User</h2>
+        {/* <h2 className="text-xl font-bold mb-4">
+          {currentUserName ? `Chat with ${currentUserName}` : "Chat with User"}
+        </h2> */}
+
+        {currentUserId ? (
+          <h2 className="text-xl font-medium mb-4">Chat with <span className="font-bold">{currentUserName}</span> </h2>
+        ) : (
+          <h2 className="text-xl font-bold mb-4">Chat with User</h2>
+        )}
+
         <div className="flex-1 overflow-auto p-4 bg-white rounded-lg shadow-lg">
           {messages.map((msg) => (
             <div
