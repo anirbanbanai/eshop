@@ -82,7 +82,7 @@ const All: React.FC = () => {
       <div className="grid grid-cols-1 md:p-8 bg-white gap-y-4 rounded-primary lg:rounded-none lg:bg-transparent lg:p-0">
         <h2 className="text-xl font-bold lg:text-3xl md:text-2xl">eCommerce</h2>
 
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3  md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4  ">
           {products.map((product) => (
             <ProductCard product={product} key={product._id} />
           ))}

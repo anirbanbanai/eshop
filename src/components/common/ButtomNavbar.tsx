@@ -37,8 +37,10 @@ const ButtomNavbar = () => {
           showConfirmButton: false,
           timer: 1500,
         }).then(() => {
-          router.push("/");
-          window.location.reload();
+          router.push("/login");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         });
       } catch (error: any) {
         Swal.fire({
