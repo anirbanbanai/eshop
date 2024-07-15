@@ -32,7 +32,7 @@ const Carts: React.FC = () => {
       }
 
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/cart");
+        const response = await axios.get("https://e-server-beta.vercel.app/api/v1/cart");
         const filteredCart = response.data.filter(
           (item: CartItem) => item.addedBy === user._id
         );
@@ -96,7 +96,7 @@ const Carts: React.FC = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/api/v1/cart/${id}`);
+        await axios.delete(`https://e-server-beta.vercel.app/api/v1/cart/${id}`);
         Swal.fire({
           icon: "success",
           title: "Deleted successfully",

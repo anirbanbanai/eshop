@@ -60,7 +60,7 @@ const AddProductD: React.FC = () => {
 
     try {
       const ress = await axios.post(
-        "http://localhost:5000/api/v1/products",
+        "https://e-server-beta.vercel.app/api/v1/products",
         alldata
       );
       console.log(ress);

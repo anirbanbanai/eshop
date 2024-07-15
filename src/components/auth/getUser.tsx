@@ -35,7 +35,7 @@ const useAuthUser = (auth: Auth) => {
     const loader = async () => {
       if (get?.email) {
         try {
-          const response = await axios.get(`http://localhost:5000/api/v1/user/email/${get?.email}`);
+          const response = await axios.get(`https://e-server-beta.vercel.app/api/v1/user/email/${get?.email}`);
           if (response?.data) {
             setUser(response.data);
             setLoading(false);

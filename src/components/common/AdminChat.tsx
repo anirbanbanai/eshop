@@ -38,13 +38,13 @@ const AdminChat: React.FC = () => {
     try {
       // Fetch all users
       const usersResponse = await axios.get(
-        "http://localhost:5000/api/v1/user"
+        "https://e-server-beta.vercel.app/api/v1/user"
       );
       const allUsers = usersResponse.data;
 
       // Fetch messages to find unique user IDs who have messaged the admin
       const messagesResponse = await axios.get(
-        "http://localhost:5000/api/v1/messages"
+        "https://e-server-beta.vercel.app/api/v1/messages"
       );
       const messages = messagesResponse.data;
 
@@ -69,7 +69,7 @@ const AdminChat: React.FC = () => {
   const fetchMessages = async (userId: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/messages/user/${userId}`
+        `https://e-server-beta.vercel.app/api/v1/messages/user/${userId}`
       );
       setMessages(response.data);
     } catch (error) {
@@ -93,7 +93,7 @@ const AdminChat: React.FC = () => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/messages",
+          "https://e-server-beta.vercel.app/api/v1/messages",
           newMessage
         );
         setMessages((prevMessages) => [...prevMessages, response.data]);
@@ -108,7 +108,7 @@ const AdminChat: React.FC = () => {
     if (!message.seen && message._id) {
       try {
         await axios.put(
-          `http://localhost:5000/api/v1/messages/${message._id}`,
+          `https://e-server-beta.vercel.app/api/v1/messages/${message._id}`,
           { seen: true }
         );
         setMessages(

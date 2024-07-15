@@ -39,7 +39,7 @@ const UserChat: React.FC = () => {
   const fetchMessages = async (userId: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/messages/user/${userId}`
+        `https://e-server-beta.vercel.app/api/v1/messages/user/${userId}`
       );
       setMessages(response.data);
     } catch (error) {
@@ -57,7 +57,7 @@ const UserChat: React.FC = () => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/messages",
+          "https://e-server-beta.vercel.app/api/v1/messages",
           newMessage
         );
         setMessages((prevMessages) => [...prevMessages, response.data]);
@@ -72,7 +72,7 @@ const UserChat: React.FC = () => {
     if (!message.seen && message._id) {
       try {
         await axios.put(
-          `http://localhost:5000/api/v1/messages/${message._id}`,
+          `https://e-server-beta.vercel.app/api/v1/messages/${message._id}`,
           { seen: true }
         );
         setMessages(

@@ -49,7 +49,7 @@ const EditModal: React.FC<EditModalProps> = ({ isOpen, onRequestClose, product }
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      await axios.put(`http://localhost:5000/api/v1/products/${product._id}`, data);
+      await axios.put(`https://e-server-beta.vercel.app/api/v1/products/${product._id}`, data);
       Swal.fire({
         icon: "success",
         title: "Updated successfully",

@@ -31,7 +31,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       const ress = await axios.post(
-        "http://localhost:5000/api/v1/auth/login",
+        "https://e-server-beta.vercel.app/api/v1/auth/login",
         data
       );
       console.log(ress);

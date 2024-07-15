@@ -28,7 +28,7 @@ const ProductCard = ({ product }: any) => {
 
     if (result.isConfirmed) {
       try {
-        const del = await axios.delete(`http://localhost:5000/api/v1/products/${id}`);
+        const del = await axios.delete(`https://e-server-beta.vercel.app/api/v1/products/${id}`);
         Swal.fire({
           icon: "success",
           title: "Deleted successfully",
@@ -58,7 +58,7 @@ const ProductCard = ({ product }: any) => {
     };
     // console.log(alldata);
     const added = await axios.post(
-      "http://localhost:5000/api/v1/cart",
+      "https://e-server-beta.vercel.app/api/v1/cart",
       alldata
     );
 

@@ -31,7 +31,7 @@ const SingleProduct = ({ params }: any) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/products/${params?.id}`
+          `https://e-server-beta.vercel.app/api/v1/products/${params?.id}`
         );
         // console.log(response.data);
         setProducts(response.data);
@@ -61,7 +61,7 @@ const SingleProduct = ({ params }: any) => {
     };
     // console.log(alldata);
     const added = await axios.post(
-      "http://localhost:5000/api/v1/cart",
+      "https://e-server-beta.vercel.app/api/v1/cart",
       alldata
     );
 

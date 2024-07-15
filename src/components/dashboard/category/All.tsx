@@ -31,7 +31,7 @@ const All: React.FC = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get<Product[]>(
-          "http://localhost:5000/api/v1/products"
+          "https://e-server-beta.vercel.app/api/v1/products"
         );
         // console.log(response.data);
         setProducts(response.data);
