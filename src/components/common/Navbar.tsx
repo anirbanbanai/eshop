@@ -11,12 +11,13 @@ import useAuthUser from "../auth/getUser";
 import { auth } from "../../../firebase.config";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MdAddShoppingCart } from "react-icons/md";
 
 const Navbar: React.FC = () => {
   const { user } = useAuthUser(auth);
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleLogout = async () => {
     const result = await Swal.fire({
@@ -52,49 +53,52 @@ const Navbar: React.FC = () => {
       }
     }
   };
+  const isActiveLink = (path: string): string => {
+    return pathname === path ? "bg-slate-300 text-white" : "hover:bg-slate-300";
+  };
 
   const NavItem = (
     <>
-      <Link className="flex gap-1 items-center" href={"/"}>
+      <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/")}`} href={"/"}>
         <CiHome className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Home</p>
       </Link>
 
-      <Link className="flex gap-1 items-center" href={"/dashboard"}>
+      <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/dashboard")}`} href={"/dashboard"}>
         <CiGrid42 className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
       </Link>
 
       {user?.role === "admin" && (
-        <Link className="flex gap-1 items-center" href={"/add-product"}>
+        <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/add-product")}`} href={"/add-product"}>
           <MdAddShoppingCart className="text-xl text-orange-500 " />
           <p className="max-lg:hidden text-sm font-semibold">Add Product</p>
         </Link>
       )}
 
       {user?.role === "user" && (
-        <Link className="flex gap-1 items-center" href={"/chat"}>
+        <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/chat")}`} href={"/chat"}>
           <BsChatDotsFill className="text-xl text-orange-500 " />
           <p className="max-lg:hidden text-sm font-semibold">Chat</p>
         </Link>
       )}
 
       {user?.role === "admin" && (
-        <Link className="flex gap-1 items-center" href={"/admin-chat"}>
+        <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/admin-chat")}`} href={"/admin-chat"}>
           <BsChatDotsFill className="text-xl text-orange-500 " />
           <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
         </Link>
       )}
 
-      <Link className="flex gap-1 items-center" href={"/cart"}>
+      <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/cart")}`} href={"/cart"}>
         <BiSolidCartDownload className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">Cart</p>
       </Link>
 
-      <Link className="flex gap-1 items-center" href={"/"}>
+      {/* <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/about-us")}`} href={"/about-us"}>
         <GiSkills className="text-xl text-orange-500 " />
         <p className="max-lg:hidden text-sm font-semibold">About Us</p>
-      </Link>
+      </Link> */}
     </>
   );
 

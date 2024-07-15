@@ -11,12 +11,15 @@ import useAuthUser from "../auth/getUser";
 import { auth } from "../../../firebase.config";
 import { signOut } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MdAddShoppingCart } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
 
 const ButtomNavbar = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const { user } = useAuthUser(auth);
+
   const handleLogout = async () => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -51,47 +54,53 @@ const ButtomNavbar = () => {
       }
     }
   };
+
+  const isActiveLink = (path: string): string => {
+    return pathname === path ? "bg-slate-300 text-white" : "hover:bg-slate-300";
+  };
+
   return (
-    <div className="bg-slate-200 py-4 px-4 fixed bottom-0 z-50 w-full  bg-glassmorphism  backdrop-blur-lg xs:px-7 md:hidden ">
+    <div className="bg-slate-200 py-4 px-4 fixed bottom-0 z-50 w-full bg-glassmorphism backdrop-blur-lg xs:px-7 md:hidden">
       <ul className="overflow-x-auto flex gap-2 justify-between items-center">
         <Link className="flex gap-1 items-center" href={"/"}>
-          <FaAmericanSignLanguageInterpreting className="text-5xl text-pink-500 " />
+          <FaAmericanSignLanguageInterpreting className="text-5xl text-pink-500" />
         </Link>
-        <Link className="flex gap-1 items-center" href={"/"}>
-          <CiHome className="text-2xl text-orange-600 " />
+        <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/")}`} href={"/"}>
+          <CiHome className="text-2xl text-orange-600" />
           <p className="max-lg:hidden text-sm font-semibold">Home</p>
         </Link>
 
-        <Link className="flex gap-1 items-center" href={"/dashboard"}>
-          <CiGrid42 className="text-2xl text-orange-600 " />
+        <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/dashboard")}`} href={"/dashboard"}>
+          <CiGrid42 className="text-2xl text-orange-600" />
           <p className="max-lg:hidden text-sm font-semibold">Dashboard</p>
         </Link>
 
         {user?.role === "admin" && (
-          <Link className="flex gap-1 items-center" href={"/add-product"}>
-            <MdAddShoppingCart className="text-xl text-orange-500 " />
+          <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/add-product")}`} href={"/add-product"}>
+            <MdAddShoppingCart className="text-xl text-orange-500" />
             <p className="max-lg:hidden text-sm font-semibold">Add Product</p>
           </Link>
         )}
 
         {user?.role === "user" && (
-          <Link className="flex gap-1 items-center" href={"/chat"}>
-            <BsChatDotsFill className="text-xl text-orange-500 " />
+          <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/chat")}`} href={"/chat"}>
+            <BsChatDotsFill className="text-xl text-orange-500" />
             <p className="max-lg:hidden text-sm font-semibold">Chat</p>
           </Link>
         )}
 
         {user?.role === "admin" && (
-          <Link className="flex gap-1 items-center" href={"/admin-chat"}>
-            <BsChatDotsFill className="text-xl text-orange-500 " />
+          <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/admin-chat")}`} href={"/admin-chat"}>
+            <BsChatDotsFill className="text-xl text-orange-500" />
             <p className="max-lg:hidden text-sm font-semibold">Admin Chat</p>
           </Link>
         )}
 
-        <Link className="flex gap-1 items-center" href={"/"}>
-          <GiSkills className="text-2xl text-orange-600 " />
+        {/* <Link className={`border border-blue-300 rounded-full p-1 flex gap-1 items-center ${isActiveLink("/about-us")}`} href={"/about-us"}>
+          <GiSkills className="text-2xl text-orange-600" />
           <p className="max-lg:hidden text-sm font-semibold">About-Us</p>
-        </Link>
+        </Link> */}
+
         <div className="flex gap-3 items-center">
           {!user ? (
             <Link href="/login">
@@ -99,10 +108,12 @@ const ButtomNavbar = () => {
             </Link>
           ) : (
             <>
-              <ButtonOnclick onClick={handleLogout}>LogOut</ButtonOnclick>
+              <ButtonOnclick onClick={handleLogout}>
+                <IoIosLogOut className="text-2xl"/>
+              </ButtonOnclick>
               <Link href="/profile">
                 <img
-                  src={user?.image}
+                  src={user?.image || "/default-profile.png"} // Add a default image in case user.image is null
                   alt="Profile"
                   className="h-[40px] w-[40px] rounded-full"
                 />

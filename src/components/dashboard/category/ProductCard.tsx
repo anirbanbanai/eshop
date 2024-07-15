@@ -98,12 +98,13 @@ const ProductCard = ({ product }: any) => {
           Price: <span className="font-semibold">{product.price}$</span>
         </h2>
       </div>
-      <div className=" flex flex-col  items-center">
 
-        <div className="flex gap-3 justify-between items-center">
+      <div className=" flex flex-col  ">
+
+        <div className="flex justify-between gap-2 ">
           <Link href={`dashboard/${product._id}`}>
             <button className="text-blue-500 text-[12px] underline">
-              know More
+               More
             </button>
           </Link>
 
@@ -124,6 +125,8 @@ const ProductCard = ({ product }: any) => {
           </div>
         )}
       </div>
+
+
       <EditModal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
