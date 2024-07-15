@@ -1,7 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import useAuthUser from "@/components/auth/getUser";
-import { ButtonGreen, ButtonOnclick, ButtonRedOnclick } from "@/components/common/ButtonAll";
+import {
+  ButtonGreen,
+  ButtonOnclick,
+  ButtonRedOnclick,
+} from "@/components/common/ButtonAll";
 import SmButton from "@/components/common/SmButton";
 import Link from "next/link";
 import { CiEdit, CiShoppingCart } from "react-icons/ci";
@@ -28,7 +32,9 @@ const ProductCard = ({ product }: any) => {
 
     if (result.isConfirmed) {
       try {
-        const del = await axios.delete(`https://e-server-beta.vercel.app/api/v1/products/${id}`);
+        const del = await axios.delete(
+          `https://e-server-beta.vercel.app/api/v1/products/${id}`
+        );
         Swal.fire({
           icon: "success",
           title: "Deleted successfully",
@@ -73,7 +79,6 @@ const ProductCard = ({ product }: any) => {
     }
   };
 
-
   const handleMore = () => {
     console.log("jfgf");
   };
@@ -93,31 +98,33 @@ const ProductCard = ({ product }: any) => {
           Price: <span className="font-semibold">{product.price}$</span>
         </h2>
       </div>
-      <div className=" flex flex-col items-center">
-        <div className="flex gap-3 justify-center">
+      <div className=" flex flex-col  items-center">
+
+        <div className="flex gap-3 justify-between items-center">
           <Link href={`dashboard/${product._id}`}>
-            <SmButton onClick={handleMore}>Know More</SmButton>
+            <button className="text-blue-500 text-[12px] underline">
+              know More
+            </button>
           </Link>
 
-          <ButtonOnclick onClick={()=>handleAddToCart(product)}>
-            <CiShoppingCart className="text-2xl text-green-500" />
+          <ButtonOnclick onClick={() => handleAddToCart(product)}>
+            <CiShoppingCart className="max-md:text-sm  text-xl text-green-500" />
           </ButtonOnclick>
         </div>
 
         {user?.role === "admin" && (
           <div className="flex gap-3 justify-center">
             <ButtonRedOnclick onClick={() => handleDelete(product._id)}>
-              <MdAutoDelete className="text-2xl text-red-500" />
+              <MdAutoDelete className="max-md:text-sm text-xl text-red-500" />
             </ButtonRedOnclick>
 
             <ButtonRedOnclick onClick={() => setIsModalOpen(true)}>
-              <CiEdit className="text-2xl text-green-500" />
+              <CiEdit className="max-md:text-sm text-xl text-green-500" />
             </ButtonRedOnclick>
           </div>
         )}
       </div>
       <EditModal
-      
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         product={product}
